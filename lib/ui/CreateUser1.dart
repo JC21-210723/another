@@ -81,11 +81,11 @@ class CreateUser1_Page extends State<StateCreateUser1>{
                         child:const Text('次へ',style: TextStyle(fontSize: 30),),
                         onPressed: (){
                           setState(() {
-                            AllUserData aud = AllUserData();
+                            AllUserData aud = AllUserData(username: AllUserData.sUserName);
                             aud.setUserName(UN);
                             UserName = aud.getUserName();
 
-                            AllObligationData aod = AllObligationData();
+                            AllObligationData aod = AllObligationData(foodid: '',foodname: '');
                             AllRecommendationData ard = AllRecommendationData();
                             aod.AllResetObligation();
                             ard.AllResetRecommendation();

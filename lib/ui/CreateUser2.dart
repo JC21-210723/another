@@ -99,7 +99,7 @@ class CreateUser2_Page extends State<StateCreateUser2> {
                                   return const StateObligation_allergy(PageFlag : 1);
                                 })
                             );
-                            AllObligationData aod = AllObligationData();
+                            AllObligationData aod = AllObligationData(foodid: '',foodname: '');
                             AllRecommendationData ard = AllRecommendationData();
                             setState(() {
                               aod.AllResetObligation();
@@ -157,7 +157,7 @@ class CreateUser2_Page extends State<StateCreateUser2> {
                           ),
                           child:const Text('登録内容を確認',style: TextStyle(fontSize: 28)),
                           onPressed: (){
-                            AllObligationData aod = AllObligationData();
+                            AllObligationData aod = AllObligationData(foodid: '',foodname: '');
                             AllRecommendationData ard = AllRecommendationData();
                             setState(() {
                               CreateUserCheck.HObligation = aod.getValueCheckString();

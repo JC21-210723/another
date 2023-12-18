@@ -3,6 +3,8 @@ import 'package:sotsuken2/Data/AllObligationData.dart';
 import 'package:sotsuken2/Data/AllRecommendationData.dart';
 import 'package:sotsuken2/Data/AllUserData.dart';
 
+import '../DB/Database.dart';
+
 class StateCreateUserCheck extends StatefulWidget{
   const StateCreateUserCheck({super.key});
 
@@ -16,7 +18,7 @@ class CreateUserCheck extends State<StateCreateUserCheck>{
   static String HObligation = "";
   static String HRecommendation = "";
 
-  AllObligationData aod = AllObligationData();
+  AllObligationData aod = AllObligationData(foodid: '',foodname: '');
   AllRecommendationData ard = AllRecommendationData();
 
 
@@ -154,9 +156,10 @@ class CreateUserCheck extends State<StateCreateUserCheck>{
                       child:ElevatedButton(
                           child:const Text('登録',style:TextStyle(fontSize:30,fontWeight: FontWeight.bold)),
                           onPressed:(){
-                            AllUserData aud = AllUserData();
-                            AllObligationData aod = AllObligationData();
+                            AllUserData aud = AllUserData(username: AllUserData.sUserName);
+                            AllObligationData aod = AllObligationData(foodid: '',foodname: '');
                             AllRecommendationData ard = AllRecommendationData();
+                            _insertUser();
                             setState(() {
                               aud.setUserNameFinal();
                               aod.AllResetObligation();
@@ -173,5 +176,13 @@ class CreateUserCheck extends State<StateCreateUserCheck>{
 
       ),
     );
+  }
+  final dbProvider = DBProvider.instance;
+  //ユーザの追加処理
+  void _insertUser() async {
+    AllUserData row = AllUserData.newAllUserData();
+    row.username = AllUserData.sUserName;
+    final username = await dbProvider.insertUser(row);
+    print('ユーザ表にinsertしました: $username');
   }
 }

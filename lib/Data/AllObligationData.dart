@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../DB/Database.dart';
+
 
 class AllObligationData{
 
@@ -63,4 +65,31 @@ class AllObligationData{
     valueCheck = [];
     hObligation = "";
   }
+
+  //追加した
+
+  final dbProvider = DBProvider.instance;
+
+  late String foodid;
+  late String foodname;
+
+  AllObligationData({
+    required this.foodid,
+    required this.foodname,
+  });
+
+  AllObligationData.newAllUserData(){
+    foodid = "";
+    foodname = "";
+  }
+
+  Map<String, dynamic> toMap() =>{
+    "foodid":foodid,
+    "foodname":foodname,
+  };
+
+  factory AllObligationData.fromMap(Map<String, dynamic>  json) => AllObligationData(
+    foodid: json["foodid"],
+    foodname: json["foodname"],
+  );
 }

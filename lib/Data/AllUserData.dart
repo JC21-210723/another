@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:sotsuken2/ui/ChooseUser.dart';
 
+import '../DB/Database.dart';
+
 class AllUserData{
   //一時的に保持するとこ
   static String sUserName = "";
@@ -45,4 +47,25 @@ class AllUserData{
   }
 //indexで誰の情報か紐づけで持ってくる
 //後でdeleteもほしいね
+
+//追加した
+  final dbProvider = DBProvider.instance;
+
+  late String username;
+
+  AllUserData({
+    required this.username,
+  });
+
+  AllUserData.newAllUserData(){
+    username = "";
+  }
+
+  Map<String, dynamic> toMap() =>{
+    "username":username,
+  };
+
+  factory AllUserData.fromMap(Map<String, dynamic>  json) => AllUserData(
+    username: json["username"],
+  );
 }
