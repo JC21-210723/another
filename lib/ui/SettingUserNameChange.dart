@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:sotsuken2/Data/AllUserData.dart';
 
+import '../DB/Database.dart';
+
 class StateSettingUserNameChange extends StatefulWidget{
   final String UserName;
   const StateSettingUserNameChange(this.UserName);
@@ -108,6 +110,7 @@ class SettingUserNameChange extends State<StateSettingUserNameChange>{
                         ),
                         child:const Text('更新',style: TextStyle(fontSize: 28),),
                         onPressed: (){
+                          //_updateUser();
                           setState(() {
                             AllUserData aud = AllUserData(username: AllUserData.sUserName);
                             aud.changeUserName(widget.UserName,afterName);
@@ -124,5 +127,13 @@ class SettingUserNameChange extends State<StateSettingUserNameChange>{
       ),
     );
   }
-
+  final dbProvider = DBProvider.instance;
+  //ユーザの更新 nullになってできない
+  /*
+  void _updateUser() async {
+    debugPrint("_updateUserにきました");
+    final updateuser = await dbProvider.updateUser(AllUserData.aName);
+    debugPrint('ユーザを更新しました $updateuser');
+  }
+   */
 }

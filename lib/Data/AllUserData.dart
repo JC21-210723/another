@@ -61,11 +61,19 @@ class AllUserData{
     username = "";
   }
 
-  Map<String, dynamic> toMap() =>{
+  Map<String, String> toMap() =>{
     "username":username,
   };
 
   factory AllUserData.fromMap(Map<String, dynamic>  json) => AllUserData(
     username: json["username"],
   );
+
+  // 更新時のデータを入力項目からコピーする処理
+  AllUserData copy({
+    String? username,
+  }) =>
+      AllUserData(
+        username: username ?? this.username,
+      );
 }

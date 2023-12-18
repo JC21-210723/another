@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../DB/Database.dart';
 import 'ChooseUser.dart';
 
 import 'package:sotsuken2/Data/AllUserData.dart';
@@ -96,6 +97,7 @@ class SettingUserDelete extends State<StateSettingUserDelete>{
                         ),
                         child:const Text('削除',style: TextStyle(fontSize: 28),),
                         onPressed: (){
+                          _deleteUser();
                           setState(() {
                             if(widget.UserName == UN && Agree == true){
                               AllUserData aud = AllUserData(username: AllUserData.sUserName);
@@ -116,5 +118,11 @@ class SettingUserDelete extends State<StateSettingUserDelete>{
       ),
     );
   }
-
+  final dbProvider = DBProvider.instance;
+//ユーザの削除
+  void _deleteUser() async {
+    debugPrint('_deleteUserに来ました');
+    final rowsDeleted = await dbProvider.deleteUser(widget.UserName);
+    print('削除しました $rowsDeleted');
+  }
 }

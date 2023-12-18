@@ -25,7 +25,7 @@ class DBProvider {
   Future<Database> _initDatabase() async {
     debugPrint("_initDatabaseにきました");
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'test.db');
+    String path = join(documentDirectory.path, 'f.db');
     return await openDatabase(
       path,
       version: 1,
@@ -357,13 +357,40 @@ class DBProvider {
     );
     return usersData;
   }
-  //userデータを削除する
-  Future delete(int userid ,String username) async {
-    final db = await instance.database;
+  //usernameを削除する
+  Future deleteUser(String username) async {
+    debugPrint('deleteUserにきました');
+    Database db = await instance.database;
     return await db.delete(
       'user',
-      where: 'userid = ? ,username = ?',                   // idで指定されたデータを削除する
-      whereArgs: [userid,username],
+      where: 'username = ?',
+      whereArgs: [username],
+    );
+  }
+  //usernameを更新する
+  /*
+  Future updateUser(String row) async {
+    debugPrint('updateUserにきました');
+    Database db = await instance.database;
+    return await db.update(
+      'user',
+      where: 'username = ?',
+      whereArgs: [row.username],
+    );
+  }
+   */
+
+  Future updateUser(AllUserData name) async {
+    debugPrint('updateUserにきました');
+    Database db = await instance.database;
+    final values = <String, dynamic>{
+      "username": name,
+    };
+    await db.update(
+      "user",
+      values,
+      where: "username=?",
+      whereArgs: [name],
     );
   }
 
@@ -372,7 +399,7 @@ class DBProvider {
   Future<int> insertfood(AllUserData row) async {
     debugPrint("insertUserにきました");
     Database db = await instance.database;
-    return await db.insert('user', row.toMap());
+    return await db.insert('food', row.toMap());
   }
 
 }
