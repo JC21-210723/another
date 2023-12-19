@@ -70,10 +70,7 @@ class AllUserData{
   );
 
   // 更新時のデータを入力項目からコピーする処理
-  AllUserData copy({
-    String? username,
-  }) =>
-      AllUserData(
-        username: username ?? this.username,
-      );
+  AllUserData copy({String? username,}) => AllUserData(
+    username: username ?? this.username,
+  );
 }
