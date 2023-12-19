@@ -25,7 +25,7 @@ class DBProvider {
   Future<Database> _initDatabase() async {
     debugPrint("_initDatabaseにきました");
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'b.db');
+    String path = join(documentDirectory.path, 'c.db');
     return await openDatabase(
       path,
       version: 1,
@@ -264,22 +264,21 @@ class DBProvider {
   }
 
    */
-/*
-  Future updateUser() async {
+
+  Future updateUser(String UserName,String afterName) async {
     debugPrint('updateUserにきました');
     Database db = await instance.database;
-    final values = <String, dynamic>{
-      "username": AllUserData.aName,
+    final values = <String, String>{
+      "username": afterName,
     };
     await db.update(
       "user",
       values,
       where: "username=?",
-      whereArgs: [AllUserData.sUserName],
+      whereArgs: [UserName],
     );
   }
 
- */
 
   //-food処理一覧-
   //表示義務の追加処理

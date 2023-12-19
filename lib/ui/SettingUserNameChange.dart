@@ -110,7 +110,7 @@ class SettingUserNameChange extends State<StateSettingUserNameChange>{
                         ),
                         child:const Text('更新',style: TextStyle(fontSize: 28),),
                         onPressed: (){
-                          //_updateUser();
+                          _updateUser();
                           setState(() {
                             AllUserData aud = AllUserData(username: AllUserData.sUserName);
                             aud.changeUserName(widget.UserName,afterName);
@@ -129,12 +129,10 @@ class SettingUserNameChange extends State<StateSettingUserNameChange>{
   }
   final dbProvider = DBProvider.instance;
   //ユーザの更新 nullになってできない
-/*
+
   void _updateUser() async {
     debugPrint("_updateUserにきました");
-    final updateuser = await dbProvider.updateUser();
-    debugPrint('ユーザを更新しました $updateuser');
+    await dbProvider.updateUser(widget.UserName,afterName);
+    debugPrint('ユーザを更新しました');
   }
-
- */
 }
