@@ -18,7 +18,7 @@ class CreateUserCheck extends State<StateCreateUserCheck>{
   static String HObligation = "";
   static String HRecommendation = "";
 
-  AllObligationData aod = AllObligationData(foodid: '',foodname: '');
+  AllObligationData aod = AllObligationData();
   AllRecommendationData ard = AllRecommendationData();
 
 
@@ -157,7 +157,7 @@ class CreateUserCheck extends State<StateCreateUserCheck>{
                           child:const Text('登録',style:TextStyle(fontSize:30,fontWeight: FontWeight.bold)),
                           onPressed:(){
                             AllUserData aud = AllUserData(username: AllUserData.sUserName);
-                            AllObligationData aod = AllObligationData(foodid: '',foodname: '');
+                            AllObligationData aod = AllObligationData();
                             AllRecommendationData ard = AllRecommendationData();
                             _insertUser();
                             _selectlistUser();

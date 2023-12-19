@@ -99,13 +99,40 @@ class Home_Page extends State<Home_Page_State>{
                           onPressed: (){
                             Navigator.pushNamed(context, 'ChooseUser_page');
                             setState(() {
-
+                              final username = DBProvider.userName.length;
+                              List result2 =  DBProvider.userName;
+                              debugPrint('listのなかみimposrt:$result2');
+                              debugPrint('listのlengthimposrt:$username');
                               valueName1 = "";
                               valueName2 = "";
                               valueName3 = "";
                               valueName4 = "";
                               valueName5 = "";
+                              for(int n = 1; n <= DBProvider.userName.length;n++){
+                                debugPrint('for文入った');
+                                switch (n){
+                                  case 5 :
+                                    valueName5 = DBProvider.userName[4];
+                                  case 4 :
+                                    valueName4 = DBProvider.userName[3];
+                                  case 3 :
+                                    valueName3 = DBProvider.userName[2];
+                                  case 2 :
+                                    valueName2 = DBProvider.userName[1];
+                                  case 1 :
+                                    valueName1 = DBProvider.userName[0];
+                                    break;
+                                  default:
+                                  //エラーのポップアップとかできないかな
+                                }
+                              }
 
+                              /*
+                              valueName1 = "";
+                              valueName2 = "";
+                              valueName3 = "";
+                              valueName4 = "";
+                              valueName5 = "";
                               AllUserData aud = AllUserData(username: AllUserData.sUserName);
 
                               switch (aud.getUserNames().length) {
@@ -123,6 +150,8 @@ class Home_Page extends State<Home_Page_State>{
                                 default:
                               }
                               //エラーのポップアップとかできないかな
+
+                               */
                             });
                           },
                         ),

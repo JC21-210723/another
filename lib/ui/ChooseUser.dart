@@ -39,7 +39,7 @@ class ChooseUser_Page extends State<StateChooseUser>{
       );
     }
     setState(() {
-
+      _selectlistUser();
       final username = DBProvider.userName.length;
       List result2 =  DBProvider.userName;
       debugPrint('listのなかみimposrt:$result2');
@@ -205,6 +205,7 @@ class ChooseUser_Page extends State<StateChooseUser>{
                       ),
                     ),
                     onPressed: (){
+                      _selectlistUser();
                       ReturnAndReload(0);
                     },
                     child: const FittedBox(
@@ -263,9 +264,6 @@ class ChooseUser_Page extends State<StateChooseUser>{
                             ),
                           ),
                           onPressed: (){
-                            //_selectAllUser();
-                            //_selectUser();
-                            _selectlistUser();
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (context){
                                 return  StateObligation_allergy(PageFlag: 0);
@@ -284,18 +282,6 @@ class ChooseUser_Page extends State<StateChooseUser>{
     );
   }
   final dbProvider = DBProvider.instance;
-  //ユーザの参照処理
-  void _selectAllUser() async {
-    debugPrint('_selectAllUserにきました');
-    final userdata = await dbProvider.selectAllUser();
-    debugPrint('ユーザ表をselectしました: $userdata');
-  }
-  //特定ユーザの参照
-  void _selectUser() async {
-    debugPrint('_selectUserにきました');
-    final usersdata = await dbProvider.selectUser();
-    debugPrint('ユーザ1をselectしました: $usersdata');
-  }
 
   //ユーザの参照処理
   void _selectlistUser() async {

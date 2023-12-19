@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-
 import 'package:sotsuken2/Data/AllUserData.dart';
 
 class DBProvider {
@@ -24,8 +23,9 @@ class DBProvider {
 
   Future<Database> _initDatabase() async {
     debugPrint("_initDatabaseにきました");
+
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'test2.db');
+    String path = join(documentDirectory.path, 'test5.db');
     return await openDatabase(
       path,
       version: 1,
@@ -214,29 +214,6 @@ class DBProvider {
     return await db.insert('user', row.toMap());
   }
 
-  // userテーブルのデータを全件取得する
-  Future<List<Map<String, dynamic>>> selectAllUser() async {
-    debugPrint("selectUserにきました");
-    final db = await instance.database;
-    final userData = await db.query('user');
-    final result = userData.length;
-    //debugPrint('userDataのlengthです↓');
-    //debugPrint('$result');
-    return userData;
-  }
-
-  // userテーブルの特定データを取得する
-  Future<List<Map<String, dynamic>>> selectUser() async {
-    debugPrint("selectUserにきました");
-    final db = await instance.database;
-    final usersData = await db.query(
-      'user',
-      where: 'userid in (?)',
-      whereArgs: [1],
-    );
-    return usersData;
-  }
-
   //usernameを削除する
   Future deleteUser(String username) async {
     debugPrint('deleteUserにきました');
@@ -293,12 +270,12 @@ class DBProvider {
   }
 
 /*
-  //-food処理一覧-
+  //-list処理一覧-
   //表示義務の追加処理
-  Future<int> insertfood(AllUserData row) async {
+  Future<int> insertfood(String checkKey) async {
     debugPrint("insertUserにきました");
     Database db = await instance.database;
-    return await db.insert('food', row.toMap());
+    return await db.insert('list', {'userid': 1, 'foodid': checkKey});
   }
  */
 

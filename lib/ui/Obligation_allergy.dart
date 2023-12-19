@@ -21,7 +21,7 @@ class StateObligation_allergy extends StatefulWidget{
 class Obligation_allergy extends State<StateObligation_allergy>{
 //チェックボックスの数だけいる(8)
 
-  AllObligationData aod = AllObligationData(foodid: '',foodname: '');
+  AllObligationData aod = AllObligationData();
 
   @override
   Widget build(BuildContext context) {

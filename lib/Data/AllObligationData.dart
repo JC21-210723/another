@@ -25,21 +25,9 @@ class AllObligationData{
     return boolList;
   }
 
-
-
   void setObligationBool(List<bool> box){
     boolList.clear();
     boolList.addAll(box);
-  }
-
-  void HanteiObligation(){
-    valueCheck.clear();
-    for(int x = 0;x < boolList.length; x++){
-      if(boolList[x] == true){
-        valueCheck.add(valueList[x]);
-      }
-    }
-    debugPrint(valueCheck.toString());
   }
 
   List<String> getValueCheck(){
@@ -67,45 +55,19 @@ class AllObligationData{
   }
 
   //追加した
-
-  final dbProvider = DBProvider.instance;
-
-  late String foodid;
-  late String foodname;
-
-  AllObligationData({
-    required this.foodid,
-    required this.foodname,
-  });
-
-  AllObligationData.newAllUserData(){
-    foodid = "";
-    foodname = "";
-  }
-
-  Map<String, dynamic> toMap() =>{
-    "foodid":foodid,
-    "foodname":foodname,
-  };
-
-  factory AllObligationData.fromMap(Map<String, dynamic>  json) => AllObligationData(
-    foodid: json["foodid"],
-    foodname: json["foodname"],
-  );
-
-
-  /*
-//おためし
   static List<bool> Boo = [];
   Map<String, String> Gimu = {"HG1":"えび", "HG2":"かに", "HG3":"くるみ", "HG4":"小麦", "HG5":"そば", "HG6":"卵", "HG7":"乳", "HG8":"落花生",};
 
-//全てのキーをリストに格納
-  List<String> keyList = Gimu.keys.toList();
+  // 全てのキーをリストに格納
+    List<String> keyList = [];
+  // チェックされた value を格納するリスト
+    static List<String> CheckValue = [];
+    static String HObligation = "";
 
-//チェックされたvalueを格納するリスト
-  static List<String> CheckValue = [];
-  static String HObligation = "";
-
+    AllObligationData() {
+  // コンストラクタ内で初期化
+      keyList = Gimu.keys.toList();
+    }
 
   void setObligationBool1(List<bool> box){
     Boo.clear();
@@ -113,8 +75,9 @@ class AllObligationData{
   }
 
 
-
-  void HanteiObligation1(){
+  void HanteiObligation(){
+      debugPrint('チェックされたときのinsert処理に来ました');
+    final dbProvider = DBProvider.instance;
     CheckValue.clear();
     for(int x = 0;x < Boo.length; x++){
       if(Boo[x] == true){
@@ -122,31 +85,14 @@ class AllObligationData{
         debugPrint(CheckKey.toString());
         CheckValue.add(Gimu[x]!);
     //ここでDBにCheckKeyを渡す（insert）
+        //final result = dbProvider.insertfood(CheckKey);
+        //debugPrint('insertの中身$result');
       }
     }
     debugPrint(CheckValue.toString());
   }
-/*
 
-void HanteiObligation(){
 
-CheckValue.clear();
-
-for(int x = 0;x < Boo.length; x++){
-
-if(Boo[x] == true){
-
-CheckValue.add(IndexValue[x]);
-
-　　}
-
-　}
-
-debugPrint(CheckValue.toString());
-
-}
-
-*/
 
   String getCheckValue(){
     HObligation = "";
@@ -160,6 +106,5 @@ debugPrint(CheckValue.toString());
     debugPrint(HObligation);
     return HObligation;
   }
- */
 
 }

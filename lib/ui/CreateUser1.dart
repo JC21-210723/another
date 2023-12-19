@@ -85,7 +85,7 @@ class CreateUser1_Page extends State<StateCreateUser1>{
                             aud.setUserName(UN);
                             UserName = aud.getUserName();
 
-                            AllObligationData aod = AllObligationData(foodid: '',foodname: '');
+                            AllObligationData aod = AllObligationData();
                             AllRecommendationData ard = AllRecommendationData();
                             aod.AllResetObligation();
                             ard.AllResetRecommendation();
