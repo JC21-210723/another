@@ -69,8 +69,4 @@ class AllUserData{
     username: json["username"],
   );
 
-  // 更新時のデータを入力項目からコピーする処理
-  AllUserData copy({String? username,}) => AllUserData(
-    username: username ?? this.username,
-  );
 }

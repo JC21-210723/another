@@ -25,7 +25,7 @@ class DBProvider {
   Future<Database> _initDatabase() async {
     debugPrint("_initDatabaseにきました");
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'c.db');
+    String path = join(documentDirectory.path, 'd.db');
     return await openDatabase(
       path,
       version: 1,
@@ -219,6 +219,9 @@ class DBProvider {
     debugPrint("selectUserにきました");
     final db = await instance.database;
     final userData = await db.query('user');
+    final result = userData.length;
+    //debugPrint('userDataのlengthです↓');
+    //debugPrint('$result');
     return userData;
   }
 
@@ -260,7 +263,39 @@ class DBProvider {
     );
   }
 
+  static List<int> userId = [];
+  static List<String> userName = [];
+  Future<List<Map<String, Object?>>> selectAllUser5() async {
+    debugPrint("selectUserにきました");
+    final db = await instance.database;
+    final userData = await db.query('user');
+    //↓returnなしで実行できる？
+    userData.map((Map<String, dynamic?> userMap) {
+      //for文でList.length分まわす
+      for(int list = 0; list < userData.length; list++){
+        //for文でMap.length分まわす(拡張for文)
+        userMap.forEach((key, value) {
+          //if文でuseridとusernameを分ける
+          if(key=='userid'){
+            userId.add(value);
+          }else if(key=='username'){
+            userName.add(value);
+          }
+        });
+      }
+    });
+    final userid = userId.length;
+    final username = userName.length;
+    debugPrint('useridのlength$userid');
+    debugPrint('useridの中身$userId');
+    debugPrint('useridのlength$username');
+    debugPrint('useridの中身$userName');
+    //debugPrint('userMap:$userMap');
+    debugPrint('userData:$userData');
+    return userData;
+  }
 
+/*
   //-food処理一覧-
   //表示義務の追加処理
   Future<int> insertfood(AllUserData row) async {
@@ -268,5 +303,6 @@ class DBProvider {
     Database db = await instance.database;
     return await db.insert('food', row.toMap());
   }
+ */
 
 }

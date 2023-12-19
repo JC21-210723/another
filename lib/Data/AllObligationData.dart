@@ -92,4 +92,73 @@ class AllObligationData{
     foodid: json["foodid"],
     foodname: json["foodname"],
   );
+
+/*
+//おためし
+  static List<bool> Boo = [];
+  Map<String, String> Gimu = {"HG1":"えび", "HG2":"かに", "HG3":"くるみ", "HG4":"小麦", "HG5":"そば", "HG6":"卵", "HG7":"乳", "HG8":"落花生",};
+
+//全てのキーをリストに格納
+  List<String> keyList = Gimu.keys.toList();
+
+//チェックされたvalueを格納するリスト
+  static List<String> CheckValue = [];
+  static String HObligation = "";
+
+
+  void setObligationBool1(List<bool> box){
+    Boo.clear();
+    Boo.addAll(box);
+  }
+
+
+
+  void HanteiObligation1(){
+    CheckValue.clear();
+    for(int x = 0;x < Boo.length; x++){
+      if(Boo[x] == true){
+        String CheckKey = keyList[x];
+        debugPrint(CheckKey.toString());
+        CheckValue.add(Gimu[x]!);
+    //ここでDBにCheckKeyを渡す（insert）
+      }
+    }
+    debugPrint(CheckValue.toString());
+  }
+/*
+
+void HanteiObligation(){
+
+CheckValue.clear();
+
+for(int x = 0;x < Boo.length; x++){
+
+if(Boo[x] == true){
+
+CheckValue.add(IndexValue[x]);
+
+　　}
+
+　}
+
+debugPrint(CheckValue.toString());
+
+}
+
+*/
+
+  String getCheckValue(){
+    HObligation = "";
+    for(int x = 0;x < CheckValue.length; x++){
+      if(x == 0 || x == CheckValue.length){
+        HObligation = '$HObligation${CheckValue[x]}';
+      }else{
+        HObligation = '$HObligation\n${CheckValue[x]}';
+      }
+    }
+    debugPrint(HObligation);
+    return HObligation;
+  }
+ */
+
 }
