@@ -128,11 +128,11 @@ class SettingUserNameChange extends State<StateSettingUserNameChange>{
     );
   }
   final dbProvider = DBProvider.instance;
-  //ユーザの更新 nullになってできない
 
   void _updateUser() async {
     debugPrint("_updateUserにきました");
     await dbProvider.updateUser(widget.UserName,afterName);
     debugPrint('ユーザを更新しました');
   }
+
 }

@@ -200,8 +200,7 @@ class DBProvider {
     for (final category in categories) {
       await db.insert('category', category);
     }
-
-// フードの挿入
+    // フードの挿入
     for (final food in foods) {
       await db.insert('food', food);
     }
@@ -234,6 +233,7 @@ class DBProvider {
     );
     return usersData;
   }
+
   //usernameを削除する
   Future deleteUser(String username) async {
     debugPrint('deleteUserにきました');
@@ -244,27 +244,8 @@ class DBProvider {
       whereArgs: [username],
     );
   }
+
   //usernameを更新する
-  /*
-  Future<int> updateUser(AllUserData row) async {
-    debugPrint('updateUserにきました');
-    Database db = await instance.database;
-    return await db.update(
-      'user',
-      AllUserData.sUserName,
-      where: 'username = ?',
-      whereArgs: [row.username],
-    );
-
-    await Database.update(
-    'user',
-        更新レコード,
-    where: where条件式,
-    whereArgs: where条件式用パラメータ);
-  }
-
-   */
-
   Future updateUser(String UserName,String afterName) async {
     debugPrint('updateUserにきました');
     Database db = await instance.database;
