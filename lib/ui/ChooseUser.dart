@@ -40,6 +40,34 @@ class ChooseUser_Page extends State<StateChooseUser>{
     }
     setState(() {
 
+      final username = DBProvider.userName.length;
+      List result2 =  DBProvider.userName;
+      debugPrint('listのなかみimposrt:$result2');
+      debugPrint('listのlengthimposrt:$username');
+      valueName1 = "";
+      valueName2 = "";
+      valueName3 = "";
+      valueName4 = "";
+      valueName5 = "";
+      for(int n = 1; n <= DBProvider.userName.length;n++){
+        debugPrint('for文入った');
+        switch (n){
+          case 5 :
+            valueName5 = DBProvider.userName[4];
+          case 4 :
+            valueName4 = DBProvider.userName[3];
+          case 3 :
+            valueName3 = DBProvider.userName[2];
+          case 2 :
+            valueName2 = DBProvider.userName[1];
+          case 1 :
+            valueName1 = DBProvider.userName[0];
+            break;
+          default:
+          //エラーのポップアップとかできないかな
+        }
+      }
+      /*
       AllUserData aud = AllUserData(username: AllUserData.sUserName);
       int aaa = aud.getUserNames().length;
       debugPrint(aaa.toString());
@@ -65,6 +93,7 @@ class ChooseUser_Page extends State<StateChooseUser>{
           //エラーのポップアップとかできないかな
         }
       }
+       */
     });
   }
 
@@ -234,10 +263,9 @@ class ChooseUser_Page extends State<StateChooseUser>{
                             ),
                           ),
                           onPressed: (){
-                            _selectAllUser();
-                            _selectUser();
-                            //_selectAllUser1();
-                            _selectAllUser5();
+                            //_selectAllUser();
+                            //_selectUser();
+                            _selectlistUser();
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (context){
                                 return  StateObligation_allergy(PageFlag: 0);
@@ -262,56 +290,18 @@ class ChooseUser_Page extends State<StateChooseUser>{
     final userdata = await dbProvider.selectAllUser();
     debugPrint('ユーザ表をselectしました: $userdata');
   }
-  //ユーザの参照処理5
-  void _selectAllUser5() async {
-    debugPrint('_selectAllUserにきました');
-    final result = await dbProvider.selectAllUser5();
-    //final userid = dbProvider.userId;
-    //final userName = dbProvider.userName;
-    //debugPrint('useridの中身$userid');
-    debugPrint('userNameの中身$result');
-  }
   //特定ユーザの参照
   void _selectUser() async {
     debugPrint('_selectUserにきました');
     final usersdata = await dbProvider.selectUser();
     debugPrint('ユーザ1をselectしました: $usersdata');
   }
-/*
-  // ユーザの参照処理
-  List<String> users = [];
-  void _selectAllUser1() async {
+
+  //ユーザの参照処理
+  void _selectlistUser() async {
     debugPrint('_selectAllUserにきました');
-    // List<Map<>>を宣言
-    final List<Map<String, dynamic>> userdata = await dbProvider.selectAllUser();
-    // Listの中身をMapを格納するMapを宣言
-    Map<int, String> user = {};
-    // userdataリスト内の各要素はMap<String, dynamic>型
-    for (int m = 0; m < userdata.length; m++) {
-      // Listの中身をMapを格納するMapを宣言
-      final Map<String, dynamic> userDataMap = userdata[m];
-      final a = userDataMap.length;
-      final b = userdata.length;
-      debugPrint('userDataMapの中身$userDataMap');
-      debugPrint('userDataMapのlengthです↓');
-      debugPrint('$a');
-      debugPrint('userdataの中身$userdata');
-      debugPrint('userdataのlengthです↓');
-      debugPrint('$b');
-      // キャストしてMap<int, String>型に変換
-      final Map<int, String> userMap = Map<int, String>.from(userDataMap.map((key, value) => MapEntry(int.parse(key), value.toString())));
-      // ListにuserMapのvalueを格納
-      user.addAll(userMap);
-      users.add(user[m].toString());
-    }
-    final result = user.length;
-    debugPrint('usersMapのlengthです↓');
-    debugPrint('$result');
-    for (String n in users) {
-      debugPrint('ユーザ表を1件ずつselectしました: $n');
-    }
-    debugPrint('ユーザ表をselectしました: $userdata');
+    final result = await dbProvider.selectlistUser();
+    debugPrint('userNameの中身$result');
   }
- */
 
 }

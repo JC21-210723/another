@@ -160,6 +160,7 @@ class CreateUserCheck extends State<StateCreateUserCheck>{
                             AllObligationData aod = AllObligationData(foodid: '',foodname: '');
                             AllRecommendationData ard = AllRecommendationData();
                             _insertUser();
+                            _selectlistUser();
                             setState(() {
                               aud.setUserNameFinal();
                               aod.AllResetObligation();
@@ -184,5 +185,12 @@ class CreateUserCheck extends State<StateCreateUserCheck>{
     row.username = AllUserData.sUserName;
     final username = await dbProvider.insertUser(row);
     print('ユーザ表にinsertしました: $username');
+  }
+
+  //ユーザの参照処理
+  void _selectlistUser() async {
+    debugPrint('_selectAllUserにきました');
+    final result = await dbProvider.selectlistUser();
+    debugPrint('userNameの中身$result');
   }
 }

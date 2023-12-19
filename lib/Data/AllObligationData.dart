@@ -93,7 +93,8 @@ class AllObligationData{
     foodname: json["foodname"],
   );
 
-/*
+
+  /*
 //おためし
   static List<bool> Boo = [];
   Map<String, String> Gimu = {"HG1":"えび", "HG2":"かに", "HG3":"くるみ", "HG4":"小麦", "HG5":"そば", "HG6":"卵", "HG7":"乳", "HG8":"落花生",};

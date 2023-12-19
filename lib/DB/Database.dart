@@ -25,7 +25,7 @@ class DBProvider {
   Future<Database> _initDatabase() async {
     debugPrint("_initDatabaseにきました");
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'd.db');
+    String path = join(documentDirectory.path, 'test2.db');
     return await openDatabase(
       path,
       version: 1,
@@ -263,36 +263,33 @@ class DBProvider {
     );
   }
 
+  //userId,userNameをlistに格納する処理
   static List<int> userId = [];
   static List<String> userName = [];
-  Future<List<Map<String, Object?>>> selectAllUser5() async {
+  Future<List<String>> selectlistUser() async {
     debugPrint("selectUserにきました");
     final db = await instance.database;
     final userData = await db.query('user');
-    //↓returnなしで実行できる？
-    userData.map((Map<String, dynamic?> userMap) {
-      //for文でList.length分まわす
-      for(int list = 0; list < userData.length; list++){
-        //for文でMap.length分まわす(拡張for文)
-        userMap.forEach((key, value) {
-          //if文でuseridとusernameを分ける
-          if(key=='userid'){
-            userId.add(value);
-          }else if(key=='username'){
-            userName.add(value);
-          }
-        });
-      }
-    });
+    userId.clear(); // リストを再度使用する前にクリアする
+    userName.clear();
+    for (Map<String, dynamic?> userMap in userData) {
+      userMap.forEach((key, value) {
+        if (key == 'userid') {
+          userId.add(value as int); // キャスト
+        } else if (key == 'username') {
+          userName.add(value as String); // キャスト
+        }
+      });
+    }
+    /*
     final userid = userId.length;
     final username = userName.length;
-    debugPrint('useridのlength$userid');
-    debugPrint('useridの中身$userId');
-    debugPrint('useridのlength$username');
-    debugPrint('useridの中身$userName');
-    //debugPrint('userMap:$userMap');
-    debugPrint('userData:$userData');
-    return userData;
+    debugPrint('useridのlength $userid');
+    debugPrint('useridの中身 $userId');
+    debugPrint('usernameのlength $username');
+    debugPrint('usernameの中身 $userName');
+     */
+    return userName;
   }
 
 /*

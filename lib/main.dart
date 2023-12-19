@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'DB/Database.dart';
 import 'ui/ChooseUser.dart';
 import 'package:sotsuken2/Data/AllUserData.dart';
 
@@ -98,7 +99,15 @@ class Home_Page extends State<Home_Page_State>{
                           onPressed: (){
                             Navigator.pushNamed(context, 'ChooseUser_page');
                             setState(() {
+
+                              valueName1 = "";
+                              valueName2 = "";
+                              valueName3 = "";
+                              valueName4 = "";
+                              valueName5 = "";
+
                               AllUserData aud = AllUserData(username: AllUserData.sUserName);
+
                               switch (aud.getUserNames().length) {
                                 case 5 :
                                   valueName5 = aud.getUserNames()[4];
